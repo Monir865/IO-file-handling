@@ -26,8 +26,7 @@ public class Student implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", address=" + address + ", gmail=" + gmail + ", age=" + age
-				+ "]";
+		return "id=" + id + ", name=" + name + ", address=" + address + ", gmail=" + gmail + ", age=" + age;
 	}
 
 

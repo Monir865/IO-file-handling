@@ -6,13 +6,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
 import resources.Student;
 
 public class ServiceProvider {
-	String file_name = "new_record";
-	File file = new File(file_name+".txt");
+	private String file_name = "new_record.txt";
+	private File file = new File(file_name);
+	private ArrayList<Student> list = new ArrayList<>();
+	private ListIterator<Student> it = null;
+	private FileOutputStream fos = null;
+	private FileInputStream fis = null;
+	private ObjectOutputStream oos = null;
+	private ObjectInputStream ois = null;
+	
 
 	
 	public ServiceProvider() {
@@ -27,26 +35,29 @@ public class ServiceProvider {
 		}
 	}
 	
-	public void addRecord(List<Student> list) throws IOException {
-		FileOutputStream fos = new FileOutputStream(file);
-		try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-			oos.writeObject(list);
-		}catch(Exception e) {
-			System.out.println("Record are Saved Successfully!");
-		}
-		
+	public void addRecord(Student student) throws IOException {
+		list.add(student);
+		fos = new FileOutputStream(file_name,true);
+		oos = new ObjectOutputStream(fos);
+		oos.writeObject(list);
+		fos.close();
+		oos.close();	
 	}
 	
-
-	public void showRecord(List<Student> list) throws IOException, ClassNotFoundException {
-		FileInputStream fis = new FileInputStream(file);
-		try (ObjectInputStream ois = new ObjectInputStream(fis)) {
-			//List<Student> st = (List<Student>) ois.readObject();
-			Student st = (Student) ois.readObject();
-			
-			
-			
-			
+	public ArrayList<Student> readFile() throws IOException, ClassNotFoundException {
+		fis = new FileInputStream(file_name);
+		ois = new ObjectInputStream(fis);
+		list = (ArrayList<Student>)ois.readObject();
+		ois.close();
+		return list;
+	}
+	
+	public void showRecord() throws IOException, ClassNotFoundException {
+		list = readFile();
+		it = list.listIterator();
+		
+		while(it.hasNext()) {
+			System.out.println(it.next());
 		}
 		
 	}
