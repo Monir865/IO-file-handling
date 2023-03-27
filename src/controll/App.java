@@ -1,13 +1,14 @@
 package controll;
 
-import service.ServiceProvider;
+import java.io.IOException;
 
 public class App {
-	public static void main(String [] args) {
-		
-		System.out.println("Hello GIT ");
-		ServiceProvider sp = new ServiceProvider("info.txt");
-		sp.show();
-		
+	
+	public static void main(String [] args) throws ClassNotFoundException {
+		try {
+			new userInputcontroll();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
