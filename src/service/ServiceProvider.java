@@ -44,24 +44,7 @@ public class ServiceProvider {
 		fos.close();
 		oos.close();	
 	}
-	
-	
-	public void display() throws FileNotFoundException, IOException, ClassNotFoundException {
-		 ois = new ObjectInputStream(new FileInputStream(file));
-		    list =(ArrayList)ois.readObject();	
-
-
-   
-		    it = list.listIterator();
-		    System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::");
-		    while(it.hasNext()) {
-			    System.out.println(it.next());
-		    }
-		    System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::");
-		    
-		    ois.close();
-	}
-	
+		
 	
 	public ArrayList<Student> readFile() throws IOException, ClassNotFoundException {
 		fis = new FileInputStream(file);
@@ -75,12 +58,11 @@ public class ServiceProvider {
 		list = readFile();
 		it = list.listIterator();
 		
+		System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::");
 		while(it.hasNext()) {
 			System.out.println(it.next());
 		}
-		
+		System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::");
 	}
-	
-	
 	
 }

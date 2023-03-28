@@ -39,7 +39,7 @@ public class userInputcontroll {
 						break;
 						
 					case 2:
-						sp.display();
+						sp.showRecord();
 						break;
 					case 3: System.exit(0);
 							break;
