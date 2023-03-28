@@ -2,6 +2,7 @@ package service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -35,17 +36,35 @@ public class ServiceProvider {
 		}
 	}
 	
-	public void addRecord(Student student) throws IOException {
-		list.add(student);
-		fos = new FileOutputStream(file_name,true);
+	public void addRecord(int id, String name, String address, String gmail, int age) throws IOException {
+		list.add(new Student(id,name,address,gmail,age));
+		fos = new FileOutputStream(file);
 		oos = new ObjectOutputStream(fos);
 		oos.writeObject(list);
 		fos.close();
 		oos.close();	
 	}
 	
+	
+	public void display() throws FileNotFoundException, IOException, ClassNotFoundException {
+		 ois = new ObjectInputStream(new FileInputStream(file));
+		    list =(ArrayList)ois.readObject();	
+
+
+   
+		    it = list.listIterator();
+		    System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::");
+		    while(it.hasNext()) {
+			    System.out.println(it.next());
+		    }
+		    System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::");
+		    
+		    ois.close();
+	}
+	
+	
 	public ArrayList<Student> readFile() throws IOException, ClassNotFoundException {
-		fis = new FileInputStream(file_name);
+		fis = new FileInputStream(file);
 		ois = new ObjectInputStream(fis);
 		list = (ArrayList<Student>)ois.readObject();
 		ois.close();

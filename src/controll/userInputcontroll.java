@@ -1,9 +1,7 @@
 package controll;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import resources.Student;
 import service.ServiceProvider;
 
 public class userInputcontroll {
@@ -36,13 +34,12 @@ public class userInputcontroll {
 						
 						System.out.print("\nEnter Student age : ");
 						int age = scan.nextInt();
-						
-						Student sd = new Student(id,name,address,gmail,age);
-						sp.addRecord(sd);
+
+						sp.addRecord(id, name, address, gmail, age);
 						break;
 						
 					case 2:
-						sp.showRecord();
+						sp.display();
 						break;
 					case 3: System.exit(0);
 							break;
