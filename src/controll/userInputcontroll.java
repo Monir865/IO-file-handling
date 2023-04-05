@@ -12,7 +12,7 @@ public class userInputcontroll {
 	public userInputcontroll() throws IOException, ClassNotFoundException {
 		
 		while(true) {	
-			System.out.println("1. Add data.\n2. Show Data.\n3. Exit\n\n");
+			System.out.println("1. Add data.\n2. Show Data.\n3. Search Record.\n4. Exit\n\n");
 			
 			System.out.println("Please Select Your service...");
 			n = scan.nextInt();
@@ -41,7 +41,12 @@ public class userInputcontroll {
 					case 2:
 						sp.showRecord();
 						break;
-					case 3: System.exit(0);
+					case 3:
+						System.out.print("\nEnter Student Id : ");
+						int sid = scan.nextInt();
+						sp.searchRecord(sid);
+						break;
+					case 4: System.exit(0);
 							break;
 					
 					default: System.out.println("Invalid input!");

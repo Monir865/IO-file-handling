@@ -15,7 +15,7 @@ import resources.Student;
 public class ServiceProvider {
 	private String file_name = "new_record.txt";
 	private File file = new File(file_name);
-	private ArrayList<Student> list = new ArrayList<>();
+	private ArrayList list = new ArrayList();
 	private ListIterator<Student> it = null;
 	private FileOutputStream fos = null;
 	private FileInputStream fis = null;
@@ -64,5 +64,27 @@ public class ServiceProvider {
 		}
 		System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::");
 	}
+	
+	public void searchRecord(int id) throws ClassNotFoundException, IOException {
+		boolean found = false;
+		list = readFile();
+
+		while(it.hasNext()) {
+			Student s = (Student) ((ListIterator<Student>) list).next();
+			
+			if(s.getId() == id) {
+				System.out.println(s.getName());
+				found = true;
+			}
+		}
+		
+		
+		
+		if(!found) {
+			System.out.println("No matched data!");
+		}
+	}
+	
+	
 	
 }
